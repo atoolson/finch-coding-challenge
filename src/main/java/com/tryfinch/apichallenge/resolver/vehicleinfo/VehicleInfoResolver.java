@@ -5,6 +5,6 @@ package com.tryfinch.apichallenge.resolver.vehicleinfo;
  */
 public interface VehicleInfoResolver {
 
-    boolean supports(String vin);
+    boolean supports(String id);
     VehicleInfo getVehicleInfo(String id);
 }

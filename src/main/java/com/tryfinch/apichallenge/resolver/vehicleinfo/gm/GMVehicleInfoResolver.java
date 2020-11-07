@@ -25,7 +25,7 @@ public class GMVehicleInfoResolver implements VehicleInfoResolver {
     @Override
     public VehicleInfo getVehicleInfo(String id) {
         if (!supports(id)) {
-            throw new IllegalArgumentException(id + " is not supported by " + getClass().getSimpleName());
+            throw new IllegalArgumentException("Getting the vehicle info for " + id + " is not supported by " + getClass().getSimpleName());
         }
 
         GMVehicleInfoRequest request = new GMVehicleInfoRequest();
