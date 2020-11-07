@@ -23,19 +23,20 @@ public class GMVehicleInfoResolver implements VehicleInfoResolver {
     }
 
     @Override
-    public VehicleInfo getVehicleInfo(String vin) {
-        if (!supports(vin)) {
-            throw new IllegalArgumentException(vin + " is not supported by " + getClass().getSimpleName());
+    public VehicleInfo getVehicleInfo(String id) {
+        if (!supports(id)) {
+            throw new IllegalArgumentException(id + " is not supported by " + getClass().getSimpleName());
         }
 
         GMVehicleInfoRequest request = new GMVehicleInfoRequest();
-        request.setId(vin);
+        request.setId(id);
 
         // TODO retry
         ResponseEntity<GMVehicleInfoResponse> response = restTemplate.postForEntity("http://gmapi.azurewebsites.net/getVehicleInfoService", request, GMVehicleInfoResponse.class);
 
         // TODO handle 429s
         // TODO handle 500s
+        // TODO handle nulls
 
         return response.getBody().toVehicleInfo();
     }

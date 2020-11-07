@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Controller for accepting web requests for vehicle info. It handles the request by asking all of the known
+ * {@link VehicleInfoResolver} resolvers if it can support this VIN, and if so, asks it to retrieve the data.
+ */
 @RestController
 @RequestMapping("/api/v1/vehicle-info")
 @RequiredArgsConstructor
@@ -20,16 +24,20 @@ public class VehicleInfoController {
     private final Set<VehicleInfoResolver> resolvers;
 
     @GetMapping("/{vin}")
-    public VehicleInfo getVehicleInfo(@PathVariable String vin) {
-        log.debug("a vehicle info request was made for {}", vin);
+    public VehicleInfo getVehicleInfo(@PathVariable String id) {
+        log.debug("a vehicle info request was made for {}", id);
 
+        // for each resolver go see if it supports this VIN
+        // if so, get the info
         for (VehicleInfoResolver resolver : resolvers) {
-            if (resolver.supports(vin)) {
-                return resolver.getVehicleInfo(vin);
+            if (resolver.supports(id)) {
+                return resolver.getVehicleInfo(id);
             }
         }
 
-        throw new IllegalArgumentException("Cannot provide vehicle information for " + vin);
+        // we can't support this VIN - thrown an error
+        // TODO map this to a HTTP status code
+        throw new IllegalArgumentException("Cannot provide vehicle information for " + id);
     }
 
 }

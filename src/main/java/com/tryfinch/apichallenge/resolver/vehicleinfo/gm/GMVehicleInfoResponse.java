@@ -28,6 +28,8 @@ public class GMVehicleInfoResponse {
             info.setDriveTrain(DriveTrain.V6);
         } else if (data.getDriveTrain().getValue().equalsIgnoreCase("v8")) {
             info.setDriveTrain(DriveTrain.V8);
+        } else if (data.getDriveTrain().getValue().equalsIgnoreCase("electric")) {
+            info.setDriveTrain(DriveTrain.ELECTRIC);
         }
 
         return info;
