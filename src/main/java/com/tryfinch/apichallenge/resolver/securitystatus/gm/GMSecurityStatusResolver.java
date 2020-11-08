@@ -2,8 +2,6 @@ package com.tryfinch.apichallenge.resolver.securitystatus.gm;
 
 import com.tryfinch.apichallenge.resolver.securitystatus.SecurityStatus;
 import com.tryfinch.apichallenge.resolver.securitystatus.SecurityStatusResolver;
-import com.tryfinch.apichallenge.resolver.vehicleinfo.gm.GMVehicleInfoRequest;
-import com.tryfinch.apichallenge.resolver.vehicleinfo.gm.GMVehicleInfoResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
