@@ -31,12 +31,7 @@ public class GMVehicleInfoResolver implements VehicleInfoResolver {
         GMVehicleInfoRequest request = new GMVehicleInfoRequest();
         request.setId(id);
 
-        // TODO retry
         ResponseEntity<GMVehicleInfoResponse> response = restClient.postForEntity("http://gmapi.azurewebsites.net/getVehicleInfoService", request, GMVehicleInfoResponse.class);
-
-        // TODO handle 429s
-        // TODO handle 500s
-        // TODO handle nulls
 
         return response.getBody().toVehicleInfo();
     }

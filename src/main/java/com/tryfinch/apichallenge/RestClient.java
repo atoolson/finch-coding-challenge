@@ -11,6 +11,7 @@ import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
@@ -42,6 +43,6 @@ public class RestClient {
                  Class<?> responseType, Object... uriVariables) throws Exception {
         log.warn("failed getting an entity. url: {}, request: {}, responseType: {}, uriVariables: {}",
                 url, request, responseType, uriVariables, e);
-        throw new RestClientException("error getting rest resource", e);
+        throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Error getting data from " + url);
     }
 }
