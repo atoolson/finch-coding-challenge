@@ -1,17 +1,17 @@
 package com.tryfinch.apichallenge.resolver.vehicleinfo.gm;
 
+import com.tryfinch.apichallenge.RestClient;
 import com.tryfinch.apichallenge.resolver.vehicleinfo.VehicleInfo;
 import com.tryfinch.apichallenge.resolver.vehicleinfo.VehicleInfoResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 @Component
 @RequiredArgsConstructor
 public class GMVehicleInfoResolver implements VehicleInfoResolver {
 
-    private final RestTemplate restTemplate;
+    private final RestClient restClient;
 
     @Override
     public boolean supports(String vin) {
@@ -32,7 +32,7 @@ public class GMVehicleInfoResolver implements VehicleInfoResolver {
         request.setId(id);
 
         // TODO retry
-        ResponseEntity<GMVehicleInfoResponse> response = restTemplate.postForEntity("http://gmapi.azurewebsites.net/getVehicleInfoService", request, GMVehicleInfoResponse.class);
+        ResponseEntity<GMVehicleInfoResponse> response = restClient.postForEntity("http://gmapi.azurewebsites.net/getVehicleInfoService", request, GMVehicleInfoResponse.class);
 
         // TODO handle 429s
         // TODO handle 500s

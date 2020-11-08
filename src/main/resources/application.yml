@@ -5,3 +5,7 @@ springdoc:
 logging:
   level:
     com.tryfinch: DEBUG
+
+retry:
+  maxAttempts: 5
+  maxDelay: 3000

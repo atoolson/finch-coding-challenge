@@ -1,17 +1,17 @@
 package com.tryfinch.apichallenge.resolver.securitystatus.gm;
 
+import com.tryfinch.apichallenge.RestClient;
 import com.tryfinch.apichallenge.resolver.securitystatus.SecurityStatus;
 import com.tryfinch.apichallenge.resolver.securitystatus.SecurityStatusResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 @Component
 @RequiredArgsConstructor
 public class GMSecurityStatusResolver implements SecurityStatusResolver {
 
-    private final RestTemplate restTemplate;
+    private final RestClient restClient;
 
     @Override
     public boolean supports(String id) {
@@ -28,7 +28,7 @@ public class GMSecurityStatusResolver implements SecurityStatusResolver {
         request.setId(id);
 
         // TODO retry
-        ResponseEntity<GMSecurityStatusResponse> response = restTemplate.postForEntity("http://gmapi.azurewebsites.net/getSecurityStatusService", request, GMSecurityStatusResponse.class);
+        ResponseEntity<GMSecurityStatusResponse> response = restClient.postForEntity("http://localhost:9900/getSecurityStatusService", request, GMSecurityStatusResponse.class);
 
 
         return response.getBody().toSecurityStatus();
