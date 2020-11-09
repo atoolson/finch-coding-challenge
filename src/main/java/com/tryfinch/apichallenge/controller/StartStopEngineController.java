@@ -48,4 +48,6 @@ public class StartStopEngineController {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not " + request.getCommand() + " for vehicle " + request.getVehicleId());
     }
 
+    // TODO add an endpoint that includes the id in the path instead of the request body
+
 }

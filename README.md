@@ -55,6 +55,19 @@ examples so developers can quickly get started with our API. I'd also add some w
 lines of [readthedocs.org](https://readthedocs.org/) or [mkdocs.org](https://www.mkdocs.org/), and perhaps some
 examples using `curl`.
 
+### Examples
+
+Here are a few examples to get started:
+```bash
+curl 'http://localhost:8080/api/v1/vehicle-info/1234'
+
+curl 'http://localhost:8080/api/v1/security-status/1235'
+
+curl 'http://localhost:8080/api/v1/fuel-battery-status/1234'
+
+curl -X POST "http://localhost:8080/api/v1/start-stop-vehicle" -H "Content-Type: application/json" -d '{"vehicleId":"1234","command":"START"}'
+```
+
 ## Other Improvements
 
 In a real-world setting I'd include other RPC mechanisms, like GraphQL or gRPC. Also, security is something I
