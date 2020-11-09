@@ -1,8 +1,7 @@
 package com.tryfinch.apichallenge.controller;
 
-import com.tryfinch.apichallenge.resolver.securitystatus.SecurityStatus;
-import com.tryfinch.apichallenge.resolver.securitystatus.SecurityStatusResolver;
-import com.tryfinch.apichallenge.resolver.vehicleinfo.VehicleInfo;
+import com.tryfinch.apichallenge.resolver.fuelbatterylevel.FuelBatteryLevel;
+import com.tryfinch.apichallenge.resolver.fuelbatterylevel.FuelBatteryLevelResolver;
 import com.tryfinch.apichallenge.resolver.vehicleinfo.VehicleInfoResolver;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,31 +21,31 @@ import java.util.Set;
  * {@link VehicleInfoResolver} resolvers if it can support this VIN, and if so, asks it to retrieve the data.
  */
 @RestController
-@RequestMapping("/api/v1/security-status")
+@RequestMapping("/api/v1/fuel-battery-status")
 @RequiredArgsConstructor
 @Slf4j
-@Tag(name = "Vehicle Security", description = "Endpoints for information about security status of a vehicle")
-public class SecurityStatusController {
+@Tag(name = "Fuel and Battery Status", description = "Endpoints for information about fuel and/or battery status of a vehicle")
+public class FuelBatteryLevelController {
 
-    private final Set<SecurityStatusResolver> resolvers;
+    private final Set<FuelBatteryLevelResolver> resolvers;
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get security status for a vehicle by vehicle id", description = "Returns a SecurityStatus " +
-            "object for the security of the vehicle with the given id.")
-    public SecurityStatus getSecurityStatus(@PathVariable String id) {
-        log.debug("a security status request was made for {}", id);
+    @Operation(summary = "Get fuel/battery for a vehicle by vehicle id", description = "Returns a FuelBatteryLevel " +
+            "object for the vehicle with the given id.")
+    public FuelBatteryLevel getSecurityStatus(@PathVariable String id) {
+        log.debug("a fuel/battery request was made for {}", id);
 
         // for each resolver go see if it supports this VIN
         // if so, get the info
-        for (SecurityStatusResolver resolver : resolvers) {
+        for (FuelBatteryLevelResolver resolver : resolvers) {
             if (resolver.supports(id)) {
-                return resolver.getSecurityStatus(id);
+                return resolver.getFuelBatteryLevel(id);
             }
         }
 
         // we can't support this id - thrown an error
-        log.error("Could not retrieve security status for vehicle " + id);
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not retrieve security status for vehicle " + id);
+        log.error("Could not retrieve fuel/battery for vehicle " + id);
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not retrieve fuel/battery for vehicle " + id);
     }
 
 }

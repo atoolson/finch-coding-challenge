@@ -19,7 +19,7 @@ public class GMVehicleInfoResolver implements VehicleInfoResolver {
         // see https://en.wikipedia.org/wiki/Vehicle_identification_number#List_of_common_WMI
         // since the challenge doesn't conform to the WMI standard, let's just hardcode this
         // return vin.startsWith("1G");
-        return "1234".equalsIgnoreCase(vin) || "1235".equalsIgnoreCase(vin);
+        return "1234".equals(vin) || "1235".equals(vin);
     }
 
     @Override

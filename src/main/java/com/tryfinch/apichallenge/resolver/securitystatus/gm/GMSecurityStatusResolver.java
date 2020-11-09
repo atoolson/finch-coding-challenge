@@ -15,7 +15,7 @@ public class GMSecurityStatusResolver implements SecurityStatusResolver {
 
     @Override
     public boolean supports(String id) {
-        return id.equalsIgnoreCase("1234") || id.equalsIgnoreCase("1235");
+        return id.equals("1234") || id.equals("1235");
     }
 
     @Override
@@ -27,7 +27,7 @@ public class GMSecurityStatusResolver implements SecurityStatusResolver {
         GMSecurityStatusRequest request = new GMSecurityStatusRequest();
         request.setId(id);
 
-        ResponseEntity<GMSecurityStatusResponse> response = restClient.postForEntity("http://localhost:9900/getSecurityStatusService", request, GMSecurityStatusResponse.class);
+        ResponseEntity<GMSecurityStatusResponse> response = restClient.postForEntity("http://gmapi.azurewebsites.net/getSecurityStatusService", request, GMSecurityStatusResponse.class);
 
 
         return response.getBody().toSecurityStatus();

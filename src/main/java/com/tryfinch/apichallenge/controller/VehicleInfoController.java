@@ -29,8 +29,8 @@ public class VehicleInfoController {
     private final Set<VehicleInfoResolver> resolvers;
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get vehicle info by id", description = "Returns a VehicleInfo object for the vehicle with the given " +
-            "id. If no vehicle is found with that id, a 404 is returned. ")
+    @Operation(summary = "Get vehicle info by id", description = "Returns a VehicleInfo object for the vehicle with the " +
+            "given id.")
     public VehicleInfo getVehicleInfo(@PathVariable String id) {
         log.debug("a vehicle info request was made for {}", id);
 

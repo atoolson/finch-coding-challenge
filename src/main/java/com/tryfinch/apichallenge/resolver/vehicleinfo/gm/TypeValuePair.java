@@ -16,7 +16,7 @@ public class TypeValuePair {
     }
 
     public Float getFloat() {
-        if (value == null) {
+        if (value == null || "null".equalsIgnoreCase(value)) {
             return null;
         }
 
