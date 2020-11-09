@@ -19,7 +19,7 @@ import java.util.Set;
 
 /**
  * Controller for accepting web requests for vehicle info. It handles the request by asking all of the known
- * {@link VehicleInfoResolver} resolvers if it can support this VIN, and if so, asks it to retrieve the data.
+ * {@link SecurityStatusResolver} resolvers if it can support this VIN, and if so, asks it to retrieve the data.
  */
 @RestController
 @RequestMapping("/api/v1/security-status")
