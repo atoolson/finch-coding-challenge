@@ -9,3 +9,7 @@ logging:
 retry:
   maxAttempts: 5
   maxDelay: 3000
+
+spring:
+  application:
+    name: finch-api-challenge
