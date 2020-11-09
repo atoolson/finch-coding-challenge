@@ -34,7 +34,7 @@ public class SecurityStatusController {
     @Operation(summary = "Get security status for a vehicle by vehicle id", description = "Returns a SecurityStatus " +
             "object for the security of the vehicle with the given id. If no vehicle is found with that id, a 404 is " +
             "returned.")
-    public SecurityStatus getVehicleInfo(@PathVariable String id) {
+    public SecurityStatus getSecurityStatus(@PathVariable String id) {
         log.debug("a security status request was made for {}", id);
 
         // for each resolver go see if it supports this VIN

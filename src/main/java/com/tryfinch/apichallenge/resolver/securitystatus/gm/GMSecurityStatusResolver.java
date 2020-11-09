@@ -27,7 +27,6 @@ public class GMSecurityStatusResolver implements SecurityStatusResolver {
         GMSecurityStatusRequest request = new GMSecurityStatusRequest();
         request.setId(id);
 
-        // TODO retry
         ResponseEntity<GMSecurityStatusResponse> response = restClient.postForEntity("http://localhost:9900/getSecurityStatusService", request, GMSecurityStatusResponse.class);
 
 
